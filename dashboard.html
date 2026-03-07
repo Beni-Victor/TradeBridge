@@ -6,13 +6,45 @@
 </head>
 <body>
 
-<h1>TradeBridge Platform</h1>
+<h1>TradeBridge Dashboard</h1>
+<p>Welcome, <span id="user-email"></span></p>
+<button onclick="logout()">Logout</button>
 
-<h2>Select Your Role</h2>
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js"></script>
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+    const firebaseConfig = {
+        apiKey: "AIzaSyCDEb2Bm9PXJKhv8le0kP07vKN8LAur6_k",
+        authDomain: "tradebridge-cd5ab.firebaseapp.com",
+        projectId: "tradebridge-cd5ab",
+        storageBucket: "tradebridge-cd5ab.firebasestorage.app",
+        messagingSenderId: "1096983594296",
+        appId: "1:1096983594296:web:ceb94e4a941b95407d2dcd"
+    };
 
-<button onclick="location.href='supplier.html'">Supplier</button>
-<button onclick="location.href='seller.html'">Seller</button>
-<button onclick="location.href='driver.html'">Driver</button>
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    // Redirect if not logged in
+    auth.onAuthStateChanged(user => {
+        if(!user){
+            alert("You must log in first!");
+            window.location.href = "../index.html";
+        } else {
+            document.getElementById("user-email").innerText = user.email;
+        }
+    });
+
+    window.logout = function(){
+        auth.signOut().then(()=>{
+            window.location.href = "../index.html";
+        });
+    };
+});
+</script>
 
 </body>
 </html>

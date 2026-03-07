@@ -4,12 +4,17 @@
     <title>Seller Panel</title>
     <link rel="stylesheet" href="../style.css">
 </head>
-<body>
+<body onload="loadProducts()">
 
-<h1>Seller View</h1>
+<h1>Marketplace</h1>
 
 <ul id="productList"></ul>
 
+<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js"></script>
+
+<script src="../firebase-config.js"></script>
 <script src="../script.js"></script>
+
 </body>
 </html>
